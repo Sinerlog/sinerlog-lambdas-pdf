@@ -1,0 +1,27 @@
+
+{
+    "Information" : [
+        "This file provides default values for the deployment wizard inside Visual Studio and the AWS Lambda commands added to the .NET Core CLI.",
+        "To learn more about the Lambda commands with the .NET Core CLI execute the following command at the command line in the project root directory.",
+        "dotnet lambda help",
+        "All the command line options for the Lambda command can be specified in this file."
+    ],
+    "profile"     : "pessoalIgor",
+    "region"      : "us-east-1",
+    "configuration" : "Release",
+    "package-type"  : "Image",
+    "function-memory-size" : 512,
+    "function-timeout"     : 150,
+    "image-command"        : "Sinerlog.Lambda.Pdf.Label::Sinerlog.Lambda.Pdf.Label.Function::FunctionHandler",
+    "docker-host-build-output-dir" : "./bin/Release/lambda-publish",
+    "function-name"                : "sinerlog-lambda-pdf",
+    "function-description"         : "Html to PDF",
+    "function-role"                : "arn:aws:iam::234284299538:role/lambda_exec_teste-lambda",
+    "function-architecture"        : "x86_64",
+    "function-subnets"             : "",
+    "function-security-groups"     : "",
+    "tracing-mode"                 : "PassThrough",
+    "dockerfile"                   : "Dockerfile",
+    "image-tag"                    : "igor-teste:latest",
+    "environment-variables"        : "\"AWS_LABEL_BUCKET_NAME\"=\"teste-pdf-igor\";\"S3_AWS_ACESS_KEY\"=\"AKIATNDDOWUJEXUCDOP4\";\"S3_AWS_SECRET_KEY\"=\"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\";\"SHM_DB\"=\"Server=shm-dev-2022121213265788710000000f.cnjhuyqjgggm.us-east-1.rds.amazonaws.com;Database=shm_db;User ID=postgres;Password=$S1n3rl0gDBpasschange;\""
+}

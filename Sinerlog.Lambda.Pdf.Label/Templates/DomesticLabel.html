@@ -1,0 +1,131 @@
+﻿<html>
+<head>
+    <meta charset='utf-8'>
+    <style>
+        #label {
+            width: 106mm;
+            height: 138mm;
+            display: block;
+            font-family: arial;
+            margin: 2mm;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Libre%20Barcode%20128" rel="stylesheet">
+</head>
+<body>
+    <div id="label">
+        <div>
+            <table id="cabecalho" style=" border: 1px solid black; border-bottom: none; width: 106mm;">
+                <tr>
+                    <td style=" text-align: center; vertical-align: top;padding-top:15px;">
+                        <img src=" data:image /jpeg;base64,{logo}" style=" float: left; width: 35mm; padding-top:0px;">
+                    </td>
+                    <td style=" text-align: center; vertical-align: top; width: 25mm; height:25mm; margin: 3.77px; padding-bottom: 15px;">
+                        {dataMatrix}
+                    </td>
+                    <td style=" text-align: center; vertical-align: top; width: 140px;padding-top:10px;">
+                        <table cellspacing=" 0" cellpadding=" 0" style=" float: right; width: 140px; height: 100%; font-size: 12px;">
+                            <tbody>
+                                <tr>
+                                    <td colspan=" 2" style=" padding-top:25px;font-size: 12px;">
+                                        <span>Peso: </span><b style=" padding-left:11px;">{weight} gr</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan=" 2" style=" font-size: 12px;">
+                                        <span>Serviço: </span> <b>{serviceType}</b></h2>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table id="bar" style=" border: 1px solid black;border-top: none; border-bottom: none; width: 106mm;">
+                <tr>
+                    <td style=" text-align: center; padding-top: 0px; font-size: 15px; font-weight: bold;text-transform:uppercase;">
+                        {trackingCode}
+                    </td>
+                </tr>
+                <tr>
+                    <td style=" text-align: center;width:50%;">
+                        <div id="trackingCodeBarId" style="font-family:'Libre Barcode 128', serif; font-size: {fontSizeBarCode}px;line-height: {lineheight};transform: scale(1,{scaleBarCode});"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table cellspacing=" 0" cellpadding=" 0" id="Table11" style=" border: 1px solid black; border-bottom: none; width: 106mm; padding: 0px; border-top: 2px solid black;">
+                <tr style=" width:25%;">
+                    <td bgcolor=" black" style=" width:25%;font-size: 14px;font-weight:bold;color: #ffffff; padding-left: 4px !important; padding: 6px;">DESTINATÁRIO</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table cellspacing=" 0" cellpadding=" 0" id="infos-destinatario" style=" border: 1px solid black; border-top:none; border-bottom: 2px solid black; width: 106mm; font-size: 8px; padding: 5px;">
+                <tr>
+                    <td style=" vertical-align: sub;">
+                        <table cellspacing=" 0" cellpadding=" 0">
+                            <tr>
+                                <td style=" font-weight: bold; padding-left: 6px; font-size: 12px;">{receiverName}</td>
+                            </tr>
+                            <tr>
+                                <td style=" font-weight: bold; padding-left: 6px; font-size: 12px;">{receiverStreet}, {receiverNumber}</td>
+                            </tr>
+                            <tr>
+                                <td style=" font-weight: bold; padding-left: 6px; font-size: 12px;display:flex;width: 40mm; word-wrap: break-word;">{receiverComplement}, {receiverDistrict}</td>
+                            </tr>
+                            <tr>
+                                <td style=" font-weight: bold; padding-left: 6px; font-size: 12px;">{receiverZipcode} {receiverCity}/{receiverState}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p id="cepCodeBarId" style=" padding-left: 6px;font-family: 'Libre Barcode 128' , serif; font-size:70px;line-height: 1.5; transform: scale(1,1.5)"></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table cellspacing=" 0" cellpadding=" 0" id="Table11" style=" border: 1px solid black; border-bottom: none; width: 106mm; padding: 0px; border-top: 2px solid black;">
+                <tr style=" width:25%;">
+                    <td bgcolor=" black" style=" width:25%;font-size: 14px;font-weight:bold;color: #ffffff; padding-left: 4px !important; padding: 6px;">REMETENTE</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table cellspacing=" 0" cellpadding=" 0" id="infos-remetente" style=" border: 1px solid black; border-bottom: none; width: 106mm; font-size: 8px; padding: 5px; border-top: none; border-bottom: 1px solid black;">
+                <tbody>
+                    <tr>
+                        <td style=" vertical-align: sub;">
+                            <table cellspacing=" 0" cellpadding=" 0">
+                                <tbody>
+                                    <tr>
+                                        <td style=" font-weight: bold; padding-left: 6px; font-size: 12px;">{senderName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style=" font-weight: bold; padding-left: 6px; font-size: 12px;">{senderStreet}, {senderNumber}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style=" font-weight: bold; padding-left: 6px; font-size: 12px;display:flex;width: 40mm; word-wrap: break-word;">{senderComplement},{senderDistrict}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style=" font-weight: bold; padding-left: 6px; font-size: 12px;">{senderZipcode}, {senderCity}/{senderState}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>{script}</script>
+</body>
+</html>

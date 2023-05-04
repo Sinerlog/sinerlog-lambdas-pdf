@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Mock Lambda Test Tool": {
+      "commandName": "Executable",
+      "commandLineArgs": "--port 5050",
+      "workingDirectory": ".\\bin\\$(Configuration)\\net6.0",
+      "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-6.0.exe",
+      "environmentVariables": {
+        "AWS_ACESS_KEY": "AKIATNDDOWUJEXUCDOP4",
+        "AWS_SECRET_KEY": "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"
+      }
+    }
+  }
+}
