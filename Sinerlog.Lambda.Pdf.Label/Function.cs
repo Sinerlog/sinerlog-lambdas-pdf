@@ -41,7 +41,10 @@ public class Function
 
     private async Task ProcessMessageAsync(SQSEvent.SQSMessage message, ILambdaContext context)
     {
+        //context.Logger.LogInformation($"MESSAGE BODY: {message.Body}");
+
         var messageReceived = JsonUtils.Deserialize<CreateLabelMessage>(message.Body);
+
 
         if(messageReceived.LabelType == Common.Constants.LabelTypeEnum.International)
         {

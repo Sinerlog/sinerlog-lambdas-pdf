@@ -6,7 +6,7 @@
         "dotnet lambda help",
         "All the command line options for the Lambda command can be specified in this file."
     ],
-    "profile"     : "pessoalIgor",
+    "profile"     : "default",
     "region"      : "us-east-1",
     "configuration" : "Release",
     "package-type"  : "Image",
@@ -16,12 +16,12 @@
     "docker-host-build-output-dir" : "./bin/Release/lambda-publish",
     "function-name"                : "sinerlog-lambda-pdf",
     "function-description"         : "Html to PDF",
-    "function-role"                : "arn:aws:iam::234284299538:role/lambda_exec_teste-lambda",
+    "function-role"                : "arn:aws:iam::759166138063:role/funcao-lambda",
     "function-architecture"        : "x86_64",
     "function-subnets"             : "",
     "function-security-groups"     : "",
     "tracing-mode"                 : "PassThrough",
     "dockerfile"                   : "Dockerfile",
-    "image-tag"                    : "igor-teste:latest",
-    "environment-variables"        : "\"AWS_LABEL_BUCKET_NAME\"=\"teste-pdf-igor\";\"S3_AWS_ACESS_KEY\"=\"AKIATNDDOWUJEXUCDOP4\";\"S3_AWS_SECRET_KEY\"=\"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\";\"SHM_DB\"=\"Server=shm-dev-2022121213265788710000000f.cnjhuyqjgggm.us-east-1.rds.amazonaws.com;Database=shm_db;User ID=postgres;Password=$S1n3rl0gDBpasschange;\""
+    "image-tag"                    : "lambda-pdf-repo:latest",
+    "environment-variables"        : "\"AWS_LABEL_BUCKET_NAME\"=\"sinerlog-dev-tracking\";\"S3_AWS_ACESS_KEY\"=\"AKIA3BQOT63HZOEYBWQL\";\"S3_AWS_SECRET_KEY\"=\"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\";\"SHM_DB\"=\"Server=shm-dev-2022121213265788710000000f.cnjhuyqjgggm.us-east-1.rds.amazonaws.com;Database=shm_db;User ID=postgres;Password=$S1n3rl0gDBpasschange;\""
 }

@@ -21,6 +21,7 @@ namespace Sinerlog.Lambda.Pdf.Common
             blinkConverterSettings.CommandLineArguments.Add("--no-sandbox");
             blinkConverterSettings.CommandLineArguments.Add("--disable-setuid-sandbox");
             blinkConverterSettings.Scale = 1.8f;
+            blinkConverterSettings.EnableOfflineMode = true;
 
             var margins = new PdfMargins
             {

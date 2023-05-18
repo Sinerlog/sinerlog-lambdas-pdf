@@ -193,15 +193,24 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
 
             return true;
         }
-
         public static async Task<bool> ProcessDomesticLabel(DomesticLabelDto labelDto, ILambdaContext lambdaContext)
         {
+
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Iniciou ProcessDomesticLabel");
+
             var html = HtmlDomesticGet(labelDto);
+
+
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML");
+
             var htmlConverter = PdfConfiguration.GetLabelConverter();
 
-            lambdaContext.Logger.Log(html);
+
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML Converter");
 
             PdfDocument document = htmlConverter.Convert(html, "");
+
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou o PDF");
 
             MemoryStream memoryStream = new MemoryStream();
 
@@ -210,8 +219,10 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             document.Close(true);
 
             var fileName = $"{Guid.NewGuid()}.pdf";
-
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Iniciou envio para o S3");
             var fileUpload = await S3Configuration.SendToS3(fileName, memoryStream);
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Finalizou envio para o S3");
+
 
             if (fileUpload)
             {
@@ -227,6 +238,9 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
                                       WHERE id = @LabelId";
 
                 var updateResult = await CommandRepository.ExecuteAsync(updateCommand, updateCommandParams);
+
+                lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Salvou registro na base");
+
                 if (!updateResult)
                 {
                     throw new Exception($"Error to save PDF Filename dor tracking {labelDto.TrackingCode}, Filename = {fileName}");
