@@ -11,7 +11,17 @@
     <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     <PackageReference Include="Npgsql" Version="7.0.4" />
-    <PackageReference Include="Syncfusion.HtmlToPdfConverter.Net.Aws" Version="21.1.41" />
+    <PackageReference Include="Syncfusion.HtmlToPdfConverter.Net.Aws" Version="21.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Fonts\LibreBarcode128Text-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

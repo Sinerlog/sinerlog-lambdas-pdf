@@ -7,7 +7,7 @@ namespace Sinerlog.Lambda.Pdf.Common
     {
         public static void Configure()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NRAiBiAaIQQuGjN/V0d+XU9Ad1RHQmFMYVF2R2BJe1RycV9HaEwxOX1dQl9gSXpRc0RlWnhbcnxQQmQ=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NRAiBiAaIQQuGjN/V0d+Xk9CfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5WdEBiX35dcnZVQWVY");
         }
         public static HtmlToPdfConverter GetLabelConverter()
         {
@@ -21,7 +21,8 @@ namespace Sinerlog.Lambda.Pdf.Common
             blinkConverterSettings.CommandLineArguments.Add("--no-sandbox");
             blinkConverterSettings.CommandLineArguments.Add("--disable-setuid-sandbox");
             blinkConverterSettings.Scale = 1.8f;
-            blinkConverterSettings.EnableOfflineMode = true;
+            blinkConverterSettings.EnableOfflineMode = false;
+
 
             var margins = new PdfMargins
             {
@@ -32,7 +33,7 @@ namespace Sinerlog.Lambda.Pdf.Common
             };
             blinkConverterSettings.Margin = margins;
 
-            blinkConverterSettings.AdditionalDelay = 1000;
+            blinkConverterSettings.AdditionalDelay = 300;
             blinkConverterSettings.EnableJavaScript = true;
 
             htmlConverter.ConverterSettings = blinkConverterSettings;

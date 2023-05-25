@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<body style="font-family: Arial, Helvetica, sans-serif">
+    <div style="width: 900px; margin-left: auto; margin-right: auto">
+        <img src="{LogoBase64}" style="max-height: 125px; max-width: 350px; padding-bottom: -10px;  margin: 0 0 10px 15px" />
+        <div style="display: flex; margin: -55px 0 0 720px;width: 200px;">
+            <img src="{QrCodeBase64}" style="max-width: 130px;height: 130px;" />
+        </div>
+        <div id="InvoiceInformation" style="font-size: 15px;display: flex; margin-top: -80px; margin-left: 35px;">
+            <div style="display: inline-grid;width: 351px;">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Stamp Date: </span>
+                    {StampDate}
+                </div>
+                <div style="word-break: break-all; width: 80%; padding-top: 6px">
+                    <span style="font-weight: bolder; width: 25%"> Unique ID: </span>
+                    <span> {UniqueId} </span>
+                </div>
+            </div>
+            <div style="display: inline-grid;width: 328px;">
+                <div>
+                    <span style="font-weight: bolder; width: 25%">
+                        Invoice Number:
+                    </span>
+                    <span> {InvoiceNumber} </span>
+                </div>
+                <div style="margin-top: 6px">
+                    <span style="font-weight: bolder; width: 25%"> Date: </span>
+                    <span style="padding-left: 20px">{OrderDate}</span>
+                </div>
+            </div>
+        </div>
+        <div id="Seller" style=" font-size: 15px; display: flex; margin-top: 35px; margin-left: 20px; padding-bottom: 3px; border-bottom: 2px solid black;">
+            <span style="font-weight: bolder; padding-right: 8px"> Seller: </span>
+            {SellerName}
+        </div>
+        <div id="SellerDocumentInformation" style="font-size: 15px; display: flex;margin-top: 4px; margin-left: 25px; ">
+            <div style="display: inline-grid">
+                <div>
+                    <span style="font-weight: bolder; width: 25%">
+                        Document Type:
+                    </span>
+                    {DocumentType}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Email: </span>
+                    {SellerEmail}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 150px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Document: </span>
+                    <span>
+                        {SellerDocument}
+                    </span>
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%"> Phone: </span>
+                    {SellerPhone}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 100px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Sales Channel: </span>
+                    <span>
+                        {SalesChannelName}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="SellerAddress" style="font-size: 15px; display: flex; margin-top: 10px; margin-left: 20px; padding-bottom: 3px; border-bottom: 2px solid black;">
+            <span style="font-weight: bolder; padding-right: 8px">
+                Seller Address
+            </span>
+        </div>
+        <div id="SellerAddressInformation" style="font-size: 15px; display: flex; margin-top: 4px; margin-left: 25px;">
+            <div style="display: inline-grid">
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder;"> Street: </span>
+                    {SellerAddressDescription}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> City: </span>
+                    {SellerAddressCity}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 100px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Number: </span>
+                    {SellerAddressNumber}
+                </div>
+                <div>
+                    <span style="font-weight: bolder; width: 25%">State: </span>
+                    {SellerAddressState}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 100px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Complement: </span>
+                    {SellerAddressComplement}
+                </div>
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> PostalCode: </span>
+                    {SellerAddressZipCode}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 100px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%">
+                        Neighborhood:
+                    </span>
+                    {SellerAddressNeighborhood}
+                </div>
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Country: </span>
+                    {SellerAddressCountry}
+                </div>
+            </div>
+        </div>
+        <div id="Buyer" style=" font-size: 15px; display: flex; margin-top: 10px; margin-left: 20px; padding-bottom: 3px; border-bottom: 2px solid black; ">
+            <span style="font-weight: bolder; padding-right: 8px"> Buyer: </span>
+            {BuyerName}
+        </div>
+        <div id="BuyerDocumentInformation" style=" font-size: 15px; display: flex; margin-top: 4px; margin-left: 25px;">
+            <div style="display: inline-grid">
+                <div>
+                    <span style="font-weight: bolder; width: 25%">
+                        Document Type:
+                    </span>
+                    {BuyerDocumentType}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Email: </span>
+                    {BuyerEmail}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 150px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Document: </span>
+                    <span> {BuyerDocument} </span>
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%"> Phone: </span>
+                    {BuyerPhone}
+                </div>
+            </div>
+        </div>
+        <div id="BuyerAddress" style="font-size: 15px; display: flex; margin-top: 10px; margin-left: 20px; padding-bottom: 3px; border-bottom: 2px solid black;">
+            <span style="font-weight: bolder; padding-right: 8px">
+                Buyer Address
+            </span>
+        </div>
+        <div id="BuyerAddressInformation" style="font-size: 15px; display: flex; margin-top: 4px; margin-left: 25px;">
+            <div style="display: inline-grid">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Street: </span>
+                    {BillingAddressDescription}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> City: </span>
+                    {BillingAddressCity}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 100px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Number: </span>
+                    {BillingAddressNumber}
+                </div>
+                <div>
+                    <span style="font-weight: bolder; width: 25%">State: </span>
+                    {BillingAddressState}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 100px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Complement: </span>
+                    {BillingAddressComplement}
+                </div>
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> PostalCode: </span>
+                    {BillingAddressZipCode}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 100px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%">
+                        Neighborhood:
+                    </span>
+                    {BillingAddressNeighborhood}
+                </div>
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Country: </span>
+                    {BillingAddressCountry}
+                </div>
+            </div>
+        </div>
+        <div id="Shipping" style=" font-size: 15px; display: flex; margin-top: 35px; margin-left: 20px; padding-bottom: 3px; border-bottom: 2px solid black;">
+            <span style="font-weight: bolder; padding-right: 8px"> Shipping: </span>
+        </div>
+        <div id="ShippingInformation" style="font-size: 15px; display: flex; margin-top: 4px; margin-left: 25px; ">
+            <div style="display: inline-grid">
+                <div>
+                    <span style="font-weight: bolder; width: 25%">
+                        Tracking Code:
+                    </span>
+                    {TrackingCode}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Shipping Method: </span>
+                    {ShippingMethod}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Name of consignee: </span>
+                    {ConsigneeName}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Complement: </span>
+                    {ShippingAddressComplement}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Postal Code: </span>
+                    {ShippingAddressZipCode}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 150px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Incoterms: </span>
+                    <span>
+                        {ServiceType}
+                    </span>
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%"> Estimated Due Date: </span>
+                    {EstimatedDueDate}
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%"> Address: </span>
+                    {ShippingAddressDescription}
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%"> Neighbourhood: </span>
+                    {ShippingAddressNeighborhood}
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%"> State: </span>
+                    {ShippingAddressState}
+                </div>
+            </div>
+            <div style="display: inline-grid; margin-left: 100px">
+                <div>
+                    <span style="font-weight: bolder; width: 25%"> Shipment Weigth: </span>
+                    </br>
+                    <span>
+                        {ShipmentWeigth} gr
+                    </span>
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%"> Number: </span>
+                    {ShippingAddressNumber}
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%">City: </span>
+                    {ShippingAddressCity}
+                </div>
+                <div style="margin-top: -10px; padding-top: 17px">
+                    <span style="font-weight: bolder; width: 25%"> Country: </span>
+                    {ShippingAddressCountry}
+                </div>
+            </div>
+        </div>
+        <div id="InvoiceItems" style="font-size: 15px; display: flex; margin-top: 10px; margin-left: 22px; border-bottom: 2px solid black;">
+            <div style="font-weight: bolder; display: inline-grid">
+                Invoice Items
+            </div>
+        </div>
+        <table cellspacing="0" style="margin-left: 22px; padding: 2px; font-size: 15px">
+            <tr style="font-weight: bolder; border-bottom: 1px solid black">
+                <td style=" width: 5%; text-align: center; border-bottom: 1px solid black; margin: 0px; border-spacing: 0; ">
+                    N°.
+                </td>
+                <td style=" width: 30%; text-align: start; border-bottom: 1px solid black; margin: 0px; border-spacing: 0; ">
+                    Description
+                </td>
+                <td style="
+                  width: 30%;
+                  text-align: start;
+                  border-bottom: 1px solid black;
+                  margin: 0px;
+                  padding-right: 20px;
+                  border-spacing: 0;
+                  ">
+                    SKU
+                </td>
+                <td style="
+                  width: 7%;
+                  text-align: center;
+                  border-bottom: 1px solid black;
+                  margin: 0px;
+                  padding-right: 20px;
+                  border-spacing: 0;
+                  ">
+                    Quantity
+                </td>
+                <td style="
+                  width: 10%;
+                  text-align: center;
+                  border-bottom: 1px solid black;
+                  margin: 0px;
+                  padding-right: 20px;
+                  border-spacing: 0;
+                  ">
+                    Currency
+                </td>
+                <td style="
+                  width: 10%;
+                  text-align: center;
+                  border-bottom: 1px solid black;
+                  margin: 0px;
+                  padding-right: 20px;
+                  border-spacing: 0;
+                  ">
+                    Unit Price
+                </td>
+                <td style="
+                  width: 10%;
+                  text-align: center;
+                  border-bottom: 1px solid black;
+                  margin: 0px;
+                  padding-right: 20px;
+                  border-spacing: 0;
+                  ">
+                    HS Code
+                </td>
+                <td style="
+                  width: 10%;
+                  text-align: center;
+                  border-bottom: 1px solid black;
+                  margin: 0px;
+                  padding-right: 20px;
+                  border-spacing: 0;
+                  ">
+                    NCM
+                </td>
+                <td style="
+                  width: 10%;
+                  text-align: center;
+                  border-bottom: 1px solid black;
+                  margin: 0px;
+                  padding-right: 20px;
+                  border-spacing: 0;
+                  ">
+                    Line Total
+                </td>
+            </tr>
+            "
+            + @$"
+            {htmlInvoiceDto.HtmlData}"
+            + @$"
+        </table>
+        <div id="Totals"
+             style="
+            font-size: 15px;
+            display: flex;
+            margin-top: 10px;
+            margin-left: 20px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid black;
+            ">
+            <span style="font-weight: bolder; padding-right: 8px"> Totals </span>
+        </div>
+        <div id="TotalsInformation"
+             style="
+            font-size: 15px;
+            display: flex;
+            margin-top: 4px;
+            margin-left: 650px;
+            ">
+            <div style="display: inline-grid">
+                <div>
+                    <span style="font-weight: bolder; width: 25%">
+                        Items:
+                    </span>
+                    {order.Currency} {(order.ProductCost ?? 0):N2}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Discount: </span>
+                    {order.Currency} {(order.Discount > 0 ? "- " : ")}{order.Discount:N2}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Shipping: </span>
+                    {order.Currency} {order.ShippingCost:N2}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Local Tax: </span>
+                    {order.Currency} {order.Tax:N2}
+                </div>
+                <div style="width: 100%; padding-top: 6px">
+                    <span style="font-weight: bolder"> Total: </span>
+                    {order.Currency} {(order.Total):N2}
+                </div>
+            </div>
+        </div>
+        <div id="PaymentInformation"
+             style="
+            font-size: 15px;
+            display: flex;
+            margin-top: 10px;
+            margin-left: 20px;
+            padding-bottom: 3px;
+            ">
+            <span style="font-weight: bolder; padding-right: 8px">
+                Payment Information
+            </span>
+        </div>
+        <div style="
+            font-size: 15px;
+            display: flex;
+            margin-top: 2px;
+            margin-left: 20px;
+            border-top: 2px solid black;
+            "></div>
+        " + @$"{htmlPaymentInfo}" + @$"
+    </div>
+</body>
+</html>

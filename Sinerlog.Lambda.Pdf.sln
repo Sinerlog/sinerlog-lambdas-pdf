@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sinerlog.Lambda.Pdf.Label",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sinerlog.Lambda.Pdf.Label.Tests", "Sinerlog.Lambda.Pdf.Label.Tests\Sinerlog.Lambda.Pdf.Label.Tests.csproj", "{0E7D0122-0EEC-4C64-9469-81FDB5F50174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sinerlog.Lambda.Pdf.Common", "Sinerlog.Lambda.Pdf.Common\Sinerlog.Lambda.Pdf.Common.csproj", "{43C42714-AB0A-420A-9E3C-7F8BB4CEC8C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sinerlog.Lambda.Pdf.Common", "Sinerlog.Lambda.Pdf.Common\Sinerlog.Lambda.Pdf.Common.csproj", "{43C42714-AB0A-420A-9E3C-7F8BB4CEC8C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sinerlog.Lambda.Pdf.Invoice", "Sinerlog.Lambda.Pdf.Invoice\Sinerlog.Lambda.Pdf.Invoice.csproj", "{E23FEE5D-02B5-4436-8EF8-04573551D6D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sinerlog.Lambda.Pdf.Invoice.Tests", "Sinerlog.Lambda.Pdf.Invoice.Tests\Sinerlog.Lambda.Pdf.Invoice.Tests.csproj", "{5F36FE48-6D36-4574-AEA3-7451C451E937}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{43C42714-AB0A-420A-9E3C-7F8BB4CEC8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43C42714-AB0A-420A-9E3C-7F8BB4CEC8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43C42714-AB0A-420A-9E3C-7F8BB4CEC8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E23FEE5D-02B5-4436-8EF8-04573551D6D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E23FEE5D-02B5-4436-8EF8-04573551D6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E23FEE5D-02B5-4436-8EF8-04573551D6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E23FEE5D-02B5-4436-8EF8-04573551D6D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F36FE48-6D36-4574-AEA3-7451C451E937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F36FE48-6D36-4574-AEA3-7451C451E937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F36FE48-6D36-4574-AEA3-7451C451E937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F36FE48-6D36-4574-AEA3-7451C451E937}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

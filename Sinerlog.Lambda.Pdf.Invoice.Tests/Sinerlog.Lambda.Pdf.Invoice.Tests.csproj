@@ -9,12 +9,10 @@
     <PackageReference Include="Amazon.Lambda.TestUtilities" Version="2.0.0" />
     <PackageReference Include="Amazon.Lambda.SQSEvents" Version="2.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
-    <PackageReference Include="Syncfusion.HtmlToPdfConverter.Net.Aws" Version="21.2.6" />
-    <PackageReference Include="Syncfusion.HtmlToPdfConverter.Net.Windows" Version="21.1.41" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sinerlog.Lambda.Pdf.Label\Sinerlog.Lambda.Pdf.Label.csproj" />
+    <ProjectReference Include="..\Sinerlog.Lambda.Pdf.Invoice\Sinerlog.Lambda.Pdf.Invoice.csproj" />
   </ItemGroup>
 </Project>
