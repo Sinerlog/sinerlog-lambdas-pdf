@@ -1,5 +1,8 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
+using Sinerlog.FullCommerce.Common;
+using Sinerlog.Lambda.Pdf.Invoice.Application;
+using Sinerlog.Lambda.Pdf.Invoice.Application.Models;
 
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -38,6 +41,10 @@ public class Function
     private async Task ProcessMessageAsync(SQSEvent.SQSMessage message, ILambdaContext context)
     {
         context.Logger.LogInformation($"Processed message {message.Body}");
+
+        var invoiceBody = JsonUtils.Deserialize<InvoiceReportDto>(message.Body);
+
+        await InvoiceGenerator.ProcessInvoice(invoiceBody,null, context);
 
         // TODO: Do interesting work based on the new message
         await Task.CompletedTask;

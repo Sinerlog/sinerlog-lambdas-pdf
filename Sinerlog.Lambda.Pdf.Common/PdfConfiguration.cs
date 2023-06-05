@@ -7,7 +7,7 @@ namespace Sinerlog.Lambda.Pdf.Common
     {
         public static void Configure()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NRAiBiAaIQQuGjN/V0d+Xk9CfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5WdEBiX35dcnZVQWVY");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NRAiBiAaIQQuGjN/V0d+Xk9CfV5AQmBIYVp/TGpJfl96cVxMZVVBJAtUQF1hSn5WdENiWn5Wc3NWQ2Ba");
         }
         public static HtmlToPdfConverter GetLabelConverter()
         {

@@ -1,6 +1,7 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
 using Sinerlog.FullCommerce.Common;
+using Sinerlog.Lambda.Pdf.Common;
 using Sinerlog.Lambda.Pdf.Common.Messages;
 using Sinerlog.Lambda.Pdf.Label.Application;
 using Sinerlog.Lambda.Pdf.Label.Application.Models;
@@ -45,15 +46,17 @@ public class Function
 
         var messageReceived = JsonUtils.Deserialize<CreateLabelMessage>(message.Body);
 
+        var htmlConverter = PdfConfiguration.GetLabelConverter();
 
-        if(messageReceived.LabelType == Common.Constants.LabelTypeEnum.International)
+
+        if (messageReceived.LabelType == Common.Constants.LabelTypeEnum.International)
         {
-            await LabelGenerator.ProcessInternationalLabel(JsonUtils.Deserialize<InternationalLabelDto>(messageReceived.LabelDtoBody.ToString()),context);
+            await LabelGenerator.ProcessInternationalLabel(JsonUtils.Deserialize<InternationalLabelDto>(messageReceived.LabelDtoBody.ToString()),htmlConverter,context);
         }
 
         if (messageReceived.LabelType == Common.Constants.LabelTypeEnum.Domestic)
         {
-            await LabelGenerator.ProcessDomesticLabel(JsonUtils.Deserialize<DomesticLabelDto>(messageReceived.LabelDtoBody.ToString()), context);
+            await LabelGenerator.ProcessDomesticLabel(JsonUtils.Deserialize<DomesticLabelDto>(messageReceived.LabelDtoBody.ToString()), htmlConverter, context);
         }
       
         await Task.CompletedTask;

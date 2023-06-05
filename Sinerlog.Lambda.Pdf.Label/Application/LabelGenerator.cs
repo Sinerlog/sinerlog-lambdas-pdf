@@ -3,6 +3,7 @@ using DataMatrix.net;
 using Sinerlog.Lambda.Pdf.Common;
 using Sinerlog.Lambda.Pdf.Common.Persistency;
 using Sinerlog.Lambda.Pdf.Label.Application.Models;
+using Syncfusion.HtmlConverter;
 using Syncfusion.Pdf;
 using System.Drawing;
 using System.Globalization;
@@ -150,10 +151,9 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
         }
         #endregion
 
-        public static async Task<bool> ProcessInternationalLabel(InternationalLabelDto labelDto, ILambdaContext lambdaContext)
+        public static async Task<bool> ProcessInternationalLabel(InternationalLabelDto labelDto, HtmlToPdfConverter htmlConverter, ILambdaContext lambdaContext)
         {
             var html = HtmlInternationalGet(labelDto);
-            var htmlConverter = PdfConfiguration.GetLabelConverter();
 
             PdfDocument document = htmlConverter.Convert(html,"");
 
@@ -193,7 +193,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
 
             return true;
         }
-        public static async Task<bool> ProcessDomesticLabel(DomesticLabelDto labelDto, ILambdaContext lambdaContext)
+        public static async Task<bool> ProcessDomesticLabel(DomesticLabelDto labelDto, HtmlToPdfConverter htmlConverter, ILambdaContext lambdaContext)
         {
 
             lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Iniciou ProcessDomesticLabel");
@@ -201,14 +201,19 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             var html = HtmlDomesticGet(labelDto);
 
 
-            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML");
-
-            var htmlConverter = PdfConfiguration.GetLabelConverter();
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML");           
 
 
-            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML Converter");
-
-            PdfDocument document = htmlConverter.Convert(html, "");
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Iniciou COnversão");
+            PdfDocument document = new();
+            try
+            {
+                document = htmlConverter.Convert(html, "");
+            }
+            catch (Exception e)
+            {
+                lambdaContext.Logger.LogError(e.Message);
+            }
 
             lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou o PDF");
 
