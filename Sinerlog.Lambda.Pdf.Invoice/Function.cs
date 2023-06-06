@@ -1,6 +1,7 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
 using Sinerlog.FullCommerce.Common;
+using Sinerlog.Lambda.Pdf.Common;
 using Sinerlog.Lambda.Pdf.Invoice.Application;
 using Sinerlog.Lambda.Pdf.Invoice.Application.Models;
 
@@ -32,7 +33,7 @@ public class Function
     /// <returns></returns>
     public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
     {
-        foreach(var message in evnt.Records)
+        foreach (var message in evnt.Records)
         {
             await ProcessMessageAsync(message, context);
         }
@@ -42,9 +43,11 @@ public class Function
     {
         context.Logger.LogInformation($"Processed message {message.Body}");
 
+        var converter = PdfConfiguration.GetInvoiceConverter();
+
         var invoiceBody = JsonUtils.Deserialize<InvoiceReportDto>(message.Body);
 
-        await InvoiceGenerator.ProcessInvoice(invoiceBody,null, context);
+        await InvoiceGenerator.ProcessInvoice(invoiceBody, converter, context);
 
         // TODO: Do interesting work based on the new message
         await Task.CompletedTask;

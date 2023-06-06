@@ -11,7 +11,6 @@ namespace Sinerlog.Lambda.Pdf.Invoice.Application
 {
     internal class InvoiceGenerator
     {
-        static CultureInfo US = new CultureInfo("en-US");
         static string TEMPLATE;
 
         public static void LoadTemplate(string templateFileName)
@@ -162,7 +161,7 @@ namespace Sinerlog.Lambda.Pdf.Invoice.Application
 
                 if (!updateResult)
                 {
-                    throw new Exception($"Error to save PDF Filename dor tracking , Filename = {fileName}");
+                    throw new Exception($"Error to save PDF Filename on Datanase , Filename = {fileName}");
                 }
             }
             else
