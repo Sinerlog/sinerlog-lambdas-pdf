@@ -52,21 +52,7 @@ namespace Sinerlog.Lambda.Pdf.Common
             blinkConverterSettings.BlinkPath = Path.GetFullPath("BlinkBinariesAws");
             blinkConverterSettings.CommandLineArguments.Add("--no-sandbox");
             blinkConverterSettings.CommandLineArguments.Add("--disable-setuid-sandbox");
-            blinkConverterSettings.Scale = 1.8f;
-            blinkConverterSettings.EnableOfflineMode = false;
-
-
-            var margins = new PdfMargins
-            {
-                Bottom = 7,
-                Left = 7,
-                Right = 10,
-                Top = 7
-            };
-            blinkConverterSettings.Margin = margins;
-
-            blinkConverterSettings.AdditionalDelay = 300;
-            blinkConverterSettings.EnableJavaScript = true;
+            blinkConverterSettings.Scale = 1f;
 
             htmlConverter.ConverterSettings = blinkConverterSettings;
 
