@@ -201,7 +201,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             var html = HtmlDomesticGet(labelDto);
 
 
-            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML");           
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML : {html}");           
 
 
             lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Iniciou COnversão");
