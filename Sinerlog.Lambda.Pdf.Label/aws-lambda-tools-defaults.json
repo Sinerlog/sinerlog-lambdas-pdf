@@ -6,7 +6,7 @@
         "dotnet lambda help",
         "All the command line options for the Lambda command can be specified in this file."
     ],
-    "profile"     : "hml-sinerlog",
+    "profile"     : "default",
     "region"      : "us-east-1",
     "configuration" : "Release",
     "package-type"  : "Image",
@@ -16,12 +16,12 @@
     "docker-host-build-output-dir" : "./bin/Release/lambda-publish",
     "function-name"                : "sinerlog-lambda-pdf",
     "function-description"         : "Html to PDF",
-    "function-role"                : "arn:aws:iam::279051387600:role/funcao-lambda",
+    "function-role"                : "arn:aws:iam::759166138063:role/funcao-lambda",
     "function-architecture"        : "x86_64",
-    "function-subnets"             : "subnet-089891f164ecae9e9,subnet-0f89ec654340b90fe,subnet-042dc8be38570ebdc",
-    "function-security-groups"     : "sg-0ba1a94c5d082a941",
+    "function-subnets"             : "",
+    "function-security-groups"     : "",
     "tracing-mode"                 : "PassThrough",
     "dockerfile"                   : "Dockerfile",
     "image-tag"                    : "lambda-pdf-repo:latest",
-    "environment-variables"        : "\"AWS_LABEL_BUCKET_NAME\"=\"sinerlog-s3-homolog\";\"S3_AWS_ACESS_KEY\"=\"AKIAWN2GDILKKZUJ3CGJ\";\"S3_AWS_SECRET_KEY\"=\"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\";\"SHM_DB\"=\"Server=postgres-shm-hml-20221226200735306800000006.cmkmql1f0jz1.us-east-1.rds.amazonaws.com;Database=postgres;User ID=postgres;Password=$S1n3rl0gDBpasschange;\""
+    "environment-variables"        : "\"AWS_LABEL_BUCKET_NAME\"=\"sinerlog-dev-tracking\";\"S3_AWS_ACESS_KEY\"=\"AKIA3BQOT63HZOEYBWQL\";\"S3_AWS_SECRET_KEY\"=\"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\";\"SHM_DB\"=\"Server=shm-dev-2022121213265788710000000f.cnjhuyqjgggm.us-east-1.rds.amazonaws.com;Database=shm_db;User ID=postgres;Password=$S1n3rl0gDBpasschange;\""
 }
