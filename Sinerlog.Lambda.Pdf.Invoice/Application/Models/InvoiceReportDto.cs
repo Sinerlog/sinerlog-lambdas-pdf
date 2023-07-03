@@ -57,6 +57,7 @@
         public string OrderShippingCost { get; set; }
         public string OrderTax { get; set; }
         public string OrderTotal { get; set; }
+        public string OrderInsurance { get; set; }
         public string HtmlPaymentInfo { get; set; }
         public string AccountTaxModality { get; set; }
         public List<InvoiceReportDtoPayment> Payments { get; set; }
