@@ -59,13 +59,15 @@ namespace Sinerlog.Lambda.Pdf.Invoice.Application
                         ";
             }
 
+            int itemsNumber = 0;
             foreach (var item in invoiceReportDto.Items)
             {
+                itemsNumber++;
                 var NOT_AVAILABLE = "N/A";
                 var accountTaxModalityIsComplete = invoiceReportDto.AccountTaxModality == "Complete";
 
                 invoiceReportDto.HtmlDetails += $@"<tr>
-                        <td style='width: 5%; text-align: center'>{invoiceReportDto.Items.Count}</td>
+                        <td style='width: 5%; text-align: center'>{itemsNumber}</td>
                         <td style='width: 30%;padding-right: 20px; text-align: start'>{item.Name ?? NOT_AVAILABLE}</td>
                         <td style='width: 20%;padding-right: 20px; text-align: start'>{item.Sku ?? NOT_AVAILABLE}</td>
                         <td style='width: 7%;padding-right: 20px; text-align: center'>{item.Quantity}</td>
@@ -91,7 +93,7 @@ namespace Sinerlog.Lambda.Pdf.Invoice.Application
                     invoiceReportDto.HtmlDetails += $@"<tr style='font-weight: bolder; border-bottom: 1px solid black'>
                         <td style='width: 5%;border-bottom: 1px solid black; margin: 0px; border-spacing: 0; text-align: center'></td>
                         <td colspan='2' style='width: 45%; border-bottom: 1px solid black; margin: 0px; border-spacing: 0; text-align: start'></td>
-                        <td colspan='6' style='width: 55%;border-bottom: 1px solid black; margin: 0px; border-spacing: 0; text-align: center'>Taxes based on documentations of {DateTime.Today.ToString("dd/MM/yyyy")}</td>
+                        <td colspan='6' style='width: 55%;border-bottom: 1px solid black; margin: 0px; border-spacing: 0; text-align: center'>Tax rates in force in the date of {DateTime.Today.ToString("dd/MM/yyyy")}</td>
                       </tr>";
                 }
                 else
