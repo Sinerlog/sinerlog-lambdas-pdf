@@ -3,7 +3,7 @@
     public class DomesticLabelDto
     {
         #region Images
-        public string LogoBase64 { get; set; }
+        public string LogoNameS3 { get; set; }
         public string DataMatrixBase64 { get; set; }
         #endregion
 
