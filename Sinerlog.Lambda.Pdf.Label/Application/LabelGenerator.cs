@@ -25,7 +25,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             var sr = new StreamReader(pathName);
             TEMPLATE = sr.ReadToEnd();
         }
-        public static string HtmlDomesticGet(DomesticLabelDto label)
+        public static string HtmlDomesticGet(DomesticLabelDto label, string labelBase64)
         {
             LoadTemplate("DomesticLabel");
 
@@ -34,7 +34,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             // Fix SVG dimension
             label.DataMatrixBase64 = DataMatrixGet(label).Replace(@"height=""220""", "").Replace(@"width=""220""", @"viewBox=""0 0 220 220""");
 
-            texto = texto.Replace("{logo}", label.LogoNameS3);
+            texto = texto.Replace("{logo}", labelBase64);
             texto = texto.Replace("{dataMatrix}", label.DataMatrixBase64);
             texto = texto.Replace("{trackingCode}", label.TrackingCode);
             texto = texto.Replace("{lineheight}", label.LineHeight);
@@ -211,10 +211,11 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
         }
         public static async Task<bool> ProcessDomesticLabel(DomesticLabelDto labelDto, HtmlToPdfConverter htmlConverter, ILambdaContext lambdaContext)
         {
+            var logo = await GetLogoAsync(labelDto.LogoNameS3);
 
             lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Iniciou ProcessDomesticLabel");
 
-            var html = HtmlDomesticGet(labelDto);
+            var html = HtmlDomesticGet(labelDto, logo);
 
 
             lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML : {html}");           
