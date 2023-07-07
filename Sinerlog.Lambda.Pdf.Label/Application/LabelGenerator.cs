@@ -137,7 +137,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             texto = texto.Replace("{receiverCity}", label.ReceiverCity);
             texto = texto.Replace("{receiverState}", label.ReceiverState);
             texto = texto.Replace("{serviceType}", label.ServiceType);
-            texto = texto.Replace("{weight}", label.Weight.ToString());
+            texto = texto.Replace("{weight}", ((int)label.Weight).ToString());
             texto = texto.Replace("{items}", string.Concat(items));
             texto = texto.Replace("{currency}", label.Order.Currency);
             texto = texto.Replace("{shipping}", label.Order.ShippingCost.ToString("N2", US));
