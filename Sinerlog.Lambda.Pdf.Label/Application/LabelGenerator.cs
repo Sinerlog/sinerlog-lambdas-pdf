@@ -25,7 +25,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             var sr = new StreamReader(pathName);
             TEMPLATE = sr.ReadToEnd();
         }
-        public static string HtmlDomesticGet(DomesticLabelDto label, string labelBase64)
+        public static string HtmlDomesticGet(DomesticLabelDto label, string labelBase64, string script)
         {
             LoadTemplate("DomesticLabel");
 
@@ -40,7 +40,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             texto = texto.Replace("{lineheight}", label.LineHeight);
             texto = texto.Replace("{scaleBarCode}", label.ScaleBarCode);
             texto = texto.Replace("{fontSizeBarCode}", label.FontSizeBarCode);
-            texto = texto.Replace("{script}", label.Script);
+            texto = texto.Replace("{script}", script);
             texto = texto.Replace("{senderName}", label.SenderName);
             texto = texto.Replace("{senderStreet}", label.SenderStreet);
             texto = texto.Replace("{senderNumber}", label.SenderNumber);
@@ -98,7 +98,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
 
             return img;
         }
-        private static string HtmlInternationalGet(InternationalLabelDto label, string logoBase64)
+        private static string HtmlInternationalGet(InternationalLabelDto label, string logoBase64, string script)
         {
             LoadTemplate("InternationalLabel");
 
@@ -120,7 +120,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             texto = texto.Replace("{lineheight}", label.LineHeight.ToString(US));
             texto = texto.Replace("{scaleBarCode}", label.ScaleBarCode.ToString(US));
             texto = texto.Replace("{fontSizeBarCode}", label.FontSizeBarCode.ToString());
-            texto = texto.Replace("{script}", label.Script);
+            texto = texto.Replace("{script}", script);
             texto = texto.Replace("{senderName}", label.SenderName);
             texto = texto.Replace("{senderStreet}", label.SenderStreet);
             texto = texto.Replace("{senderNumber}", label.SenderNumber);
@@ -155,10 +155,11 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
         public static async Task<bool> ProcessInternationalLabel(InternationalLabelDto labelDto, HtmlToPdfConverter htmlConverter, ILambdaContext lambdaContext)
         {
             var logo = await GetLogoAsync(labelDto.LogoNameS3);
+            var javascript = $"function encode(value){{\r\nvar i, j, intWeight, intLength, intWtProd = 0, arrayData = [], fs;\r\n  var arraySubst = [ \"Ã\", \"Ä\", \"Å\", \"Æ\", \"Ç\", \"È\", \"É\", \"Ê\" ];\r\n\r\n/*\r\n * Checksum Calculation for Code 128 B\r\n */\r\n  intLength = value.length;\r\n\tarrayData[0] = 104; // Assume Code 128B, Will revise to support A, C and switching.\r\n\tintWtProd = 104;\r\n\tfor (j = 0; j < intLength; j += 1) {{\r\n\t\t\tarrayData[j + 1] = value.charCodeAt(j) - 32; // Have to convert to Code 128 encoding\r\n\t\t\tintWeight = j + 1; // to generate the checksum\r\n\t\t\tintWtProd += intWeight * arrayData[j + 1]; // Just a weighted sum\r\n\t}}\r\n\tarrayData[j + 1] = intWtProd % 103; // Modulo 103 on weighted sum\r\n\tarrayData[j + 2] = 106; // Code 128 Stop character\r\n  chr = parseInt(arrayData[j + 1], 10); // Gotta convert from character to a number\r\n  if (chr > 94) {{\r\n    chrString = arraySubst[chr - 95];\r\n  }} else {{\r\n    chrString = String.fromCharCode(chr + 32);\r\n  }}\r\n  \r\n  var toReturn =  'Ì' + // Start Code B\r\n    value + // The originally typed string\r\n    chrString + // The generated checksum\r\n    'Î'; // Stop Code\r\n  \r\n  return toReturn;\r\n\r\n\r\n}}\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\",function () {{\r\n  var trackingCodeEncoded = encode('{labelDto.TrackingCode}');   \r\n  var cepCodeEncoded = encode('{labelDto.RecipientAddress.ZipCode}'); \r\n\r\n  \r\n  document.getElementById(\"trackingCodeBarId\").innerHTML = trackingCodeEncoded;  \r\n  document.getElementById(\"cepCodeBarId\").innerHTML = cepCodeEncoded;  \r\n}});";
 
-            var html = HtmlInternationalGet(labelDto, logo);
+            var html = HtmlInternationalGet(labelDto, logo, javascript);
 
-            PdfDocument document = htmlConverter.Convert(html,"");
+            PdfDocument document = htmlConverter.Convert(html, "");
 
             MemoryStream memoryStream = new MemoryStream();
 
@@ -170,7 +171,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
 
             var fileUpload = await S3Configuration.SendToS3(fileName, memoryStream);
 
-            if(fileUpload)
+            if (fileUpload)
             {
                 var updateCommandParams = new
                 {
@@ -182,9 +183,9 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
                 var updateCommand = @$"UPDATE public.labels 
                                       SET pdf_file_name = @FileName, last_modified_by = @LastModifiedBy, last_modified = @LastModified
                                       WHERE id = @LabelId";
-                
-                var updateResult = await CommandRepository.ExecuteAsync(updateCommand,updateCommandParams);
-                if(!updateResult)
+
+                var updateResult = await CommandRepository.ExecuteAsync(updateCommand, updateCommandParams);
+                if (!updateResult)
                 {
                     throw new Exception($"Error to save PDF Filename dor tracking {labelDto.TrackingCode}, Filename = {fileName}");
                 }
@@ -212,13 +213,14 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
         public static async Task<bool> ProcessDomesticLabel(DomesticLabelDto labelDto, HtmlToPdfConverter htmlConverter, ILambdaContext lambdaContext)
         {
             var logo = await GetLogoAsync(labelDto.LogoNameS3);
+            var javascript = $"function encode(value){{\r\nvar i, j, intWeight, intLength, intWtProd = 0, arrayData = [], fs;\r\n  var arraySubst = [ \"Ã\", \"Ä\", \"Å\", \"Æ\", \"Ç\", \"È\", \"É\", \"Ê\" ];\r\n\r\n/*\r\n * Checksum Calculation for Code 128 B\r\n */\r\n  intLength = value.length;\r\n\tarrayData[0] = 104; // Assume Code 128B, Will revise to support A, C and switching.\r\n\tintWtProd = 104;\r\n\tfor (j = 0; j < intLength; j += 1) {{\r\n\t\t\tarrayData[j + 1] = value.charCodeAt(j) - 32; // Have to convert to Code 128 encoding\r\n\t\t\tintWeight = j + 1; // to generate the checksum\r\n\t\t\tintWtProd += intWeight * arrayData[j + 1]; // Just a weighted sum\r\n\t}}\r\n\tarrayData[j + 1] = intWtProd % 103; // Modulo 103 on weighted sum\r\n\tarrayData[j + 2] = 106; // Code 128 Stop character\r\n  chr = parseInt(arrayData[j + 1], 10); // Gotta convert from character to a number\r\n  if (chr > 94) {{\r\n    chrString = arraySubst[chr - 95];\r\n  }} else {{\r\n    chrString = String.fromCharCode(chr + 32);\r\n  }}\r\n  \r\n  var toReturn =  'Ì' + // Start Code B\r\n    value + // The originally typed string\r\n    chrString + // The generated checksum\r\n    'Î'; // Stop Code\r\n  \r\n  return toReturn;\r\n\r\n\r\n}}\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\",function () {{\r\n  var trackingCodeEncoded = encode('{labelDto.TrackingCode}');   \r\n  var cepCodeEncoded = encode('{labelDto.RecipientAddress.ZipCode}'); \r\n\r\n  \r\n  document.getElementById(\"trackingCodeBarId\").innerHTML = trackingCodeEncoded;  \r\n  document.getElementById(\"cepCodeBarId\").innerHTML = cepCodeEncoded;  \r\n}});";
 
             lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Iniciou ProcessDomesticLabel");
 
-            var html = HtmlDomesticGet(labelDto, logo);
+            var html = HtmlDomesticGet(labelDto, logo, javascript);
 
 
-            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML : {html}");           
+            lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Gerou HTML : {html}");
 
 
             lambdaContext.Logger.LogInformation($"{lambdaContext.AwsRequestId} Iniciou COnversão");

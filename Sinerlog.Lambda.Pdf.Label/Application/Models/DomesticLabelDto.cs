@@ -66,7 +66,6 @@
         public string FontSizeBarCode { get; set; }
         public string LineHeight { get; set; }
         public string ScaleBarCode { get; set; }
-        public string Script { get; set; }
         public int ModuleSizeDataMatrix { get; set; }
 
         #endregion
