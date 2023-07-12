@@ -3,7 +3,8 @@
     public class InvoiceReportDto
     {
         public int OrderId { get; set; }
-        public string LogoBase64 { get; set; }
+        public string? LogoNameS3 { get; set; }
+        public string? LogoBase64 { get; set; }
         public string QrCodeBase64 { get; set; }
         public string StampDate { get; set; }
         public string UniqueId { get; set; }
