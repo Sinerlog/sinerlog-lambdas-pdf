@@ -141,7 +141,7 @@ namespace Sinerlog.Lambda.Pdf.Label.Application
             texto = texto.Replace("{items}", string.Concat(items));
             texto = texto.Replace("{currency}", label.Order.Currency);
             texto = texto.Replace("{shipping}", label.Order.ShippingCost.ToString("N2", US));
-            texto = texto.Replace("{insurance}", 0.ToString("N2", US));
+            texto = texto.Replace("{insurance}", label.Order.Insurance.ToString("N2", US));
             texto = texto.Replace("{others}", label.Order.Others.ToString("N2", US));
             texto = texto.Replace("{discount}", label.Order.Discount.ToString("N2", US));
             texto = texto.Replace("{total}", label.Order.Total.ToString("N2", US));
